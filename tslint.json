@@ -1,0 +1,34 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [ true, "single"], 
+    "semicolon": [true, "always"],
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ],
+    "no-console": {
+      "severity": "warning"
+    },
+    "interface-name": false,
+    "radix": false,
+    "object-literal-sort-keys": false,
+    "disable-next-line": "no-string-literal"
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*",
+      "views/**/*",
+      ".vscode/**/*",
+      "bin/**/*",
+      "./**/*.test.ts"
+    ],
+    "include": ["./src/*.ts"]
+  }
+}
