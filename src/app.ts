@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
+// import cors from 'cors';
 import express from 'express';
 import morganLogger from 'morgan';
 import path from 'path';
@@ -8,13 +8,13 @@ import mongo from './db/mongodb';
 import mainRouter from './routes/main';
 
 import { createLogger, format, transports } from 'winston';
+const cors = require('cors');
 const { combine, timestamp, prettyPrint } = format;
 const logger = createLogger({
   level: 'info',
   format: combine(timestamp(), prettyPrint()),
   transports: [new transports.Console()]
 });
-
 const app = express();
 
 // body-parser
@@ -48,7 +48,7 @@ mongo(); // mongo DB ON
 
 // app.use(express.static('public'));
 
-// app.use(cors());
+app.use(cors());
 
 app.use('/', mainRouter);
 
