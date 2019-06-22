@@ -54,7 +54,8 @@ mongo(); // mongo DB ON
 app.options('*', (req, res) => {
   res.append('Access-Control-Allow-Origin', '*');
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.append('Access-Control-Max-Age', '3600');
+  res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers');
   console.log(1);
   res.status(200).json({dohun: 'hi'});
 });
