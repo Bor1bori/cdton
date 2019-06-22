@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  relative_mem: { // users memory power!!
+  mem_power: { // users memory power!!
     type: Number, // 1/2, 1, 4 -> d in e^(-t/n*d)
     required: true,
   }
