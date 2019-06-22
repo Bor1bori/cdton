@@ -98,8 +98,7 @@ router.post('/login', (req: any, res: any, next: any) => {
     const token = jwt.sign({userinfo: user}, jwt_conf.jwtSecret);
     // res.cookie('Authorization', token, { expires: new Date(Date.now() + 86400000), httpOnly: true });
     return res.status(200).json({success: true, jwtToken: token});
-    );
-  })(req, res, next);
+  });
 });
 
 export default router;
