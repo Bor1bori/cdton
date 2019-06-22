@@ -81,7 +81,7 @@ describe('Request Test', ()=>{
       .post(`/Users/${id}/records`)
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
-      .send({title: 'bbb', link: 'aaa.com', content: 'blahblah', category: 'aa'})
+      .send({title: 'aaa', link: 'aaa.com', content: 'blahblah', category: 'aa'})
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true;
@@ -97,7 +97,7 @@ describe('Request Test', ()=>{
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.records).is.not.null;
-        console.log(res.body);
+        console.log(res.body.records);
         done();
       });
   });
