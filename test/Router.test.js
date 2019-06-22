@@ -14,6 +14,7 @@ const id = 'testaaa123';
 const pw = 'test';
 const mem_power = 1;
 let token;
+let ind;
 
 describe('Request Test', ()=>{
   it('/auth/register', (done) => {
@@ -98,8 +99,19 @@ describe('Request Test', ()=>{
         expect(err).to.be.null;
         expect(res.body.records).is.not.null;
         console.log(res.body.records);
+        ind = res.body.records[0].index
         done();
       });
   });
-
+  it('/Users/:id/records/:index(delete)', (done) => {
+    chai.request(url)
+      .delete(`/Users/${id}/records/${ind}`)
+      .set('Authorization', token)
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body.success).is.true;
+        done();
+      });
+  });
 });

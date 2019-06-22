@@ -58,7 +58,10 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
             RecordModel.findOne({index: userInDb.records[i]}, (err3: any, recordDb: any) => {
               const t = (now - recordDb.base_time) / (1000 * 60 * 60 * 24);
               recordDb.retention = Math.exp( -t / (recordDb.retrieve_num * userInDb.mem_power));
-              recordDb.retrieve_num = recordDb.retrieve_num + 1;
+              if (recordDb.retention < 60) {
+                recordDb.retrieve_num = recordDb.retrieve_num + 1;
+                recordDb.base_time = new Date();
+              }
               userRecords.push(recordDb);
               recordDb.save();
               if (i === (userInDb.records.length - 1)){
@@ -166,20 +169,18 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
  */
 
 /**
- * @api {delete} /Users/:id/records/:record_index get category
+ * @api {delete} /Users/:id/records/:record_index delete record
  * @apiName delete a record
  * @apiGroup Records
  *
  * @apiHeader {String} Authorization jwtToken;
- *
- * @apiParam {Number} index record_index
  *
  * @apiSuccess {Boolean} Success true
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "Success": true
+ *       "success": true
  *     }
  * @apiError cannot create category
  *
@@ -190,6 +191,28 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
  *     }
  */
 
+router.delete('/:id/records/:index', (req: any, res: any, next: any) => {
+  passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
+    if (err || !user || (user.id !== req.params.id)) {
+      res.status(403).json({error: 'amtn errorim'});
+    } else {
+      UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
+        if(userInDb === null) {
+          res.status(403).json({error: 'amtn errorim'});
+        } else {
+          let ind = Number(req.params.index);
+          if (!(ind in userInDb.records)){
+            res.status(404).end();
+          } else {
+            userInDb.splice(userInDb.indexOf(ind), 1);
+            RecordModel.deleteOne({index: ind});
+            userInDb.save();
+            res.status(200).json({success: true}):
+          }
+        }
+      });
+}})(req, res, next);
+});
 
 
 export default router;
