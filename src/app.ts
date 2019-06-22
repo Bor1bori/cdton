@@ -67,7 +67,6 @@ app.use((req, res, next) => {
     res.send(200) :
     next();
 });
-app.
 
 app.use('/', mainRouter);
 
