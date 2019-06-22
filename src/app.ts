@@ -15,10 +15,8 @@ const logger = createLogger({
   format: combine(timestamp(), prettyPrint()),
   transports: [new transports.Console()]
 });
-
 const app = express();
-// app.use(cors());
-// app.options('*', cors());  // enable pre-flight
+
 // body-parser
 app.use(
   bodyParser.urlencoded({
@@ -45,7 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 logger.info('db connect start');
 mongo(); // mongo DB ON
 
