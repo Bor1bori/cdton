@@ -8,7 +8,7 @@ const router = express.Router();
  * @apiName getUserInfo
  * @apiGroup Users
  *
- * @apiHeader {String} Cookies Authorization={$jwtToken};
+ * @apiHeader {String} Authorization jwtToken;
  *
  * @apiSuccess {Boolean} success true
  * @apiSuccess {String} message "hello, {$id}"

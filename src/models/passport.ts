@@ -7,12 +7,12 @@ import UserModel from './mongodb/user';
 
 const JWTStrategy   = passportJWT.Strategy;
 
-const cookieExtractor = (req: any) => {
+const tokenExtractor = (req: any) => {
   let token = null;
-  if (req && req.cookies)
+  if (req && req.headers)
   {
 // tslint:disable-next-line: no-string-literal
-    token = req.cookies.Authorization;
+    token = req.headers['Authorization'];
   }
   return token;
 };
@@ -50,7 +50,7 @@ passport.use(
   )
 );
 const opts = {
-  jwtFromRequest: cookieExtractor,
+  jwtFromRequest: tokenExtractor,
   secretOrKey: jwt_conf.jwtSecret
 };
 
