@@ -26,9 +26,9 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.set('views', path.join(__dirname, '../apidocs'));
+app.set('views', path.join(__dirname, '../views/apidocs'));
 app.locals.viewdir = app.get('views');
-app.use(express.static(path.join(__dirname, '../apidocs')));
+app.use(express.static(path.join(__dirname, '../views/apidocs')));
 
 /**
  * //template engine
