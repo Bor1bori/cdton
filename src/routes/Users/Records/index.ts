@@ -99,7 +99,7 @@ router.post('/', (req: any, res: any, next: any) => {
       }
       );
 }}
-);
+)});
 
 /**
  * @api {put} /Users/:id/records/:record_index put record
@@ -153,3 +153,5 @@ router.post('/', (req: any, res: any, next: any) => {
  *       "error": "amtn errorim"
  *     }
  */
+
+export default router;

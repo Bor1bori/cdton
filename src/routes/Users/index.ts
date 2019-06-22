@@ -2,6 +2,7 @@ import express from 'express';
 import UserModel from '../../models/mongodb/user';
 import passport from '../../models/passport';
 import categoryRouter from './category/index';
+import recordsRouter from './Records/index';
 const router = express.Router();
 
 /**
@@ -53,6 +54,7 @@ router.get('/:id', (req: any, res: any, next: any) => {
   })(req, res, next);
 });
 
-router.use('/:id/category', categoryRouter)
+router.use('/:id/category', categoryRouter);
+router.use('/:id/category/records', recordsRouter);
 
 export default router;
