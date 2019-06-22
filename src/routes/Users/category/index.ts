@@ -5,7 +5,7 @@ import UserModel from '../../../models/mongodb/user';
 const router = express.Router();
 
 /**
- * @api {get} / get category
+ * @api {get} /:id/category get category
  * @apiName get category list
  * @apiGroup category
  *
@@ -13,7 +13,7 @@ const router = express.Router();
  *
  * @apiParam {String} category
  *
- * @apiSuccess {array} Categorys category_list
+ * @apiSuccess {array} category category_list
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -46,7 +46,7 @@ router.get('/', (req: any, res: any, next: any) => {
 });
 
 /**
- * @api {put} / edit category
+ * @api {put} /:id/category edit category
  * @apiName category create
  * @apiGroup category
  *
@@ -79,7 +79,7 @@ router.put('/', (req: any, res: any, next: any) => {
         if (userInDb === null) {
           res.status(202).json({error: 'amtn errorim'});
         } else {
-          // userInDb.category =
+          userInDb.category = res.body.category;
           res.status(200).json({success: true});
         }
       });

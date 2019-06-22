@@ -56,7 +56,7 @@ describe('Request Test', ()=>{
       .put(`/Users/${id}/category`)
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
-      .send({categiry: ['default', 'for_test']})
+      .send({category: ['default', 'for_test']})
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true
