@@ -15,7 +15,15 @@ const logger = createLogger({
   format: combine(timestamp(), prettyPrint()),
   transports: [new transports.Console()]
 });
+
 const app = express();
+
+app.options('/', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader('Access-Control-Allow-Headers', "*");
+  res.end();
+});
 
 // body-parser
 app.use(
@@ -49,12 +57,7 @@ mongo(); // mongo DB ON
 // app.use(express.static('public'));
 
 // app.use(cors());
-app.options('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', "*");
-  res.end();
-});
+
 app.use('/', mainRouter);
 
 app.listen(30704, () => {
