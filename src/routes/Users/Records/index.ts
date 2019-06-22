@@ -57,10 +57,10 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
           for (let i = 0; i < userInDb.records.length; i++) {
             RecordModel.findOne({index: userInDb.records[i]}, (err3: any, recordDb: any) => {
               const t = (now - recordDb.base_time) / (1000 * 60 * 60 * 24);
-              console.log('iiii');
               recordDb.retention = Math.exp( -t / (recordDb.retrieve_num * userInDb.mem_power));
               recordDb.retrieve_num = recordDb.retrieve_num + 1;
               userRecords.push(recordDb);
+              console.log('iiii', recordDb);
               recordDb.save();
             });
           }
