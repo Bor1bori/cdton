@@ -47,7 +47,7 @@ logger.info('db connect start');
 mongo(); // mongo DB ON
 
 // app.use(express.static('public'));
-const corsOpt = function(req, callbank) {
+const corsOpt = function(req: any, callbank: any) {
   callbank(null, {origin: true});
 };
 // 모든 도메인의 통신을 허용합니다.
