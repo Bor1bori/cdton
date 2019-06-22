@@ -59,7 +59,7 @@ passport.use(new JWTStrategy(opts, (jwtPayload: any, done: any) => {
   console.log(jwtPayload)
   console.log(jwtPayload.userinfo)
   console.log(jwtPayload.userinfo.id)
-  UserModel.findOne({ud: jwtPayload.userinfo.id}, (err, user) => {
+  UserModel.findOne({id: jwtPayload.userinfo.id}, (err, user) => {
     if (err) {
       return done(err);
     }
