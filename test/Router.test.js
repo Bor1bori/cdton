@@ -37,6 +37,7 @@ describe('Request Test', ()=>{
         expect(res.body.success).is.true;
         expect(res.body.jwtToken).is.not.null;
         token = res.body.jwtToken;
+        console.log(token);
         done();
       });
   });
@@ -46,6 +47,7 @@ describe('Request Test', ()=>{
       .set('Content-Type', 'application/json')
       .set('Cookie', `Authorization=${token};`)
       .end((err, res) => {
+        console.log('here');
         expect(err).to.be.null;
         expect(res.body.success).is.true;
         console.log(res.body.message);
