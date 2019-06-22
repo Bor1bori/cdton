@@ -31,6 +31,14 @@ const router = express.Router();
 
 router.get('/:id', (req: any, res: any, next: any) => {
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
+    if(user){
+      console.log('user is here');
+      console.log(user.id);
+    }
+    if(err){
+      console.log(err);
+    }
+
     if (err || !user || (user.id !== req.params.id)) {
       res.status(403).json({success: false});
     } else {
