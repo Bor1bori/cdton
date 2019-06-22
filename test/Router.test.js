@@ -109,6 +109,7 @@ describe('Request Test', ()=>{
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
+        console.log('index: '+ind);
         expect(err).to.be.null;
         expect(res.body.success).is.true;
         done();
