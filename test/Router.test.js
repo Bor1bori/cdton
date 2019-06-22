@@ -48,6 +48,7 @@ describe('Request Test', ()=>{
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.category).is.not.null
+        done();
       })
   });
   it('/Users/:id/category(put)', (done) => {
@@ -59,6 +60,7 @@ describe('Request Test', ()=>{
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true
+        done();
       })
   });
   it('/Users/:id',(done) => {
