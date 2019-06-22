@@ -207,7 +207,7 @@ router.delete('/:id/records/:index', (req: any, res: any, next: any) => {
             userInDb.splice(userInDb.indexOf(ind), 1);
             RecordModel.deleteOne({index: ind});
             userInDb.save();
-            res.status(200).json({success: true}):
+            res.status(200).json({success: true});
           }
         }
       });
