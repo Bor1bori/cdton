@@ -60,10 +60,11 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
               recordDb.retention = Math.exp( -t / (recordDb.retrieve_num * userInDb.mem_power));
               recordDb.retrieve_num = recordDb.retrieve_num + 1;
               userRecords.push(recordDb);
-              console.log('iiii', recordDb);
+              console.log('iiii', userRecords);
               recordDb.save();
             });
           }
+          console.log('jjjj', userRecords);
           res.status(200).json({records: userRecords});
         }
       });
