@@ -87,3 +87,5 @@ router.put('/', (req: any, res: any, next: any) => {
     }
   })(req, res, next);
 });
+
+export default router;

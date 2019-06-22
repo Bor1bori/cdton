@@ -1,6 +1,7 @@
 import express from 'express';
 import UserModel from '../../models/mongodb/user';
 import passport from '../../models/passport';
+import categoryRouter from './category/index';
 const router = express.Router();
 
 /**
@@ -49,5 +50,7 @@ router.get('/:id', (req: any, res: any, next: any) => {
     }
   })(req, res, next);
 });
+
+router.use('/:id/category', categoryRouter)
 
 export default router;
