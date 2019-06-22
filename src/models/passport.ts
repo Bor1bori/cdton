@@ -13,6 +13,7 @@ const tokenExtractor = (req: any) => {
   {
 // tslint:disable-next-line: no-string-literal
     token = req.headers['Authorization'];
+    console.log(token);
   }
   return token;
 };
