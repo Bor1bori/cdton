@@ -23,7 +23,7 @@ describe('Request Test', ()=>{
       .send({id: id, pw: pw, mem_power: mem_power})
       .end((err, res)=>{
         expect(err).to.be.null;
-        expect(res).to.have.status(200);
+        expect(res.status).is.oneOf([200,202])//to.have.status(200);
         done();
       });
   });
