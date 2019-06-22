@@ -44,7 +44,7 @@ describe('Request Test', ()=>{
   it('Get userinfo',(done) => {
     chai.request(url)
       .get(`/Users/${id}`)
-      // .set('Cookie', `Authorization=${token};`)
+      .set('Cookie', `Authorization=${token}`)
       // .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(err).to.be.null;
