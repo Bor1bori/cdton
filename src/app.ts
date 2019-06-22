@@ -17,7 +17,7 @@ const logger = createLogger({
 });
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 // app.options('*', cors());  // enable pre-flight
 
 // body-parser
