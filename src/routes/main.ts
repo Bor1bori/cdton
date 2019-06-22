@@ -5,15 +5,15 @@ import UsersRouter from './Users/index';
 const router = express.Router();
 
 router.get('/', (req: any, res: any, next: any) => {
-  res.render('apidoc/index');
+  res.render('/apidocs/index');
 });
 
 router.use('/auth', AuthRouter);
 router.use('/Users', UsersRouter);
-router.get('/login',(req: any, res: any, next: any) => {
+router.get('/login', (req: any, res: any, next: any) => {
   res.render('login');
 });
-router.get('/register',(req: any, res: any, next: any) => {
+router.get('/register', (req: any, res: any, next: any) => {
   res.render('regiser');
 });
 
