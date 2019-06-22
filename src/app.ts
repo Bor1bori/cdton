@@ -17,8 +17,12 @@ const logger = createLogger({
 });
 
 const app = express();
-app.use(cors());
-app.options('*', cors());  // enable pre-flight
+app.all('/*', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  next();
+});
+// app.options('*', cors());  // enable pre-flight
 
 // body-parser
 app.use(
