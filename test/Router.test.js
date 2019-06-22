@@ -16,7 +16,7 @@ const mem_power = 1;
 let token;
 
 describe('Request Test', ()=>{
-  it('Register', (done) => {
+  it('/auth/register', (done) => {
     chai.request(url)
       .post('/auth/register')
       .set('Content-Type', 'application/json')
@@ -27,7 +27,7 @@ describe('Request Test', ()=>{
         done();
       });
   });
-  it('Login',(done) => {
+  it('/auth/login',(done) => {
     chai.request(url)
       .post('/auth/login')
       .set('Content-Type', 'application/json')
@@ -40,14 +40,35 @@ describe('Request Test', ()=>{
         done();
       });
   });
-  it('Get userinfo',(done) => {
+  it('/Users/:id/category(get)', (done) => {
+    chai.request(url)
+      .get(`/Users/${id}/category`)
+      .set('Authorization', token)
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body.category).is.not.null
+      })
+  });
+  it('/Users/:id/category(put)', (done) => {
+    chai.request(url)
+      .put(`/Users/${id}/category`)
+      .set('Authorization', token)
+      .set('Content-Type', 'application/json')
+      .send({categiry: ['default', 'for_test']})
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body.success).is.true
+      })
+  });
+  it('/Users/:id',(done) => {
     chai.request(url)
       .get(`/Users/${id}`)
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res.body.success).is.true;
+        expect(res.bod.idy).is.equal(id)
         done();
       });
   });

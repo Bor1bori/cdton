@@ -59,7 +59,7 @@ router.get('/', (req: any, res: any, next: any) => {
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "success": "true",
+ *       "success": true,
  *     }
  * @apiError cannot create category
  *
@@ -75,7 +75,14 @@ router.put('/', (req: any, res: any, next: any) => {
     if (err || !user){
       res.status(202).json({error: 'amtn errorim'});
     } else {
-      
+      UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
+        if (userInDb === null) {
+          res.status(202).json({error: 'amtn errorim'});
+        } else {
+          // userInDb.category =
+          res.status(200).json({success: true});
+        }
+      });
       res.status(200).json({success: true});
     }
   })(req, res, next);

@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
+// import cors from 'cors';
 import express from 'express';
 import morganLogger from 'morgan';
 import path from 'path';
@@ -48,7 +48,7 @@ mongo(); // mongo DB ON
 
 // app.use(express.static('public'));
 
-app.use(cors());
+app.use(require('cors')());
 app.use('/', mainRouter);
 
 app.listen(30704, () => {
