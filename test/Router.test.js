@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 
 const url = 'http://localhost:30704';
 
-const id = 'testaaa';
+const id = 'testaaa123';
 const pw = 'test';
 const mem_power = 1;
 let token;
