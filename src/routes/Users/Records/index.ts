@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/')
 
 /**
- * @api {get} /:id/records get Records
+ * @api {get} /Users/:id/records get Records
  * @apiName get records list
  * @apiGroup Records
  *
@@ -44,7 +44,7 @@ router.get('/')
  */
 
 /**
- * @api {post} /:id/records post record
+ * @api {post} /Users/:id/records post record
  * @apiName post record
  * @apiGroup Records
  *
@@ -72,13 +72,12 @@ router.get('/')
  */
 
 /**
- * @api {put} /:id/records/:record_index put record
+ * @api {put} /Users/:id/records/:record_index put record
  * @apiName modify a record
- * @apiGroup Record
+ * @apiGroup Records
  *
  * @apiHeader {String} Authorization jwtToken;
  *
- * @apiParam {String} index
  * @apiParam {String} title titlename
  * @apiParam {String} link link(not essential)
  * @apiParam {String} content content
@@ -101,7 +100,7 @@ router.get('/')
  */
 
 /**
- * @api {get} / get category
+ * @api {delete} /Users/:id/records/:record_index get category
  * @apiName get category list
  * @apiGroup category
  *

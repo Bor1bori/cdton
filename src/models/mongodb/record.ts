@@ -4,8 +4,9 @@ import mongoose from 'mongoose';
 const recordSchema = new mongoose.Schema({
   index: {
     type: Number,
-    required: true
-  }
+    required: true,
+    unique: true
+  },
   title: {
     type: String,
     required: true
