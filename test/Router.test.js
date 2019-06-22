@@ -45,7 +45,7 @@ describe('Request Test', ()=>{
     chai.request(url)
       .get(`/Users/${id}`)
       .set('Content-Type', 'application/json')
-      // .set('Cookie', `Authorization=${token};`)
+      .set('Cookie', 'Authorization='+token)
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true;
