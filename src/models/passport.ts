@@ -10,8 +10,7 @@ const ExtractJwt = passportJWT.ExtractJwt;
 
 const tokenExtractor = (req: any) => {
   let token = null;
-  if (req && req.headers)
-  {
+  if (req && req.headers){
 // tslint:disable-next-line: no-string-literal
     token = req.headers['authorization'];
     console.log(token);
@@ -52,11 +51,14 @@ passport.use(
   )
 );
 const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeader,
+  jwtFromRequest: tokenExtractor,
   secretOrKey: jwt_conf.jwtSecret
 };
 
 passport.use(new JWTStrategy(opts, (jwtPayload: any, done: any) => {
+  console.log(jwtPayload)
+  console.log(jwtPayload.userinfo)
+  console.log(jwtPayload.userinfo.id)
   UserModel.findOne({ud: jwtPayload.userinfo.id}, (err, user) => {
     if (err) {
       return done(err);
