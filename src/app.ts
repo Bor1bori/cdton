@@ -55,7 +55,7 @@ app.options('/**/*', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', '*');
   res.header('Access-Control-Allow-Headers', '*');
-  res.send();
+  res.status(200).json({dohun: 'hi'});
 });
 
 app.use('/', mainRouter);
