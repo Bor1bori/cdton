@@ -68,7 +68,7 @@ describe('Request Test', ()=>{
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res.bod.idy).is.equal(id)
+        expect(res.bod.id).is.equal(id)
         done();
       });
   });

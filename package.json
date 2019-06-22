@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./node_modules/.bin/ts-node ./src/app.ts",
     "test": "mocha",
-    "apidocs": "apidoc -i ./src -o ./apidocs & ./apidocs/index.html"
+    "apidocs": "apidoc -i ./src -o ./views/apidocs & ./views/apidocs/index.html"
   },
   "apidoc": {
     "title": "cdton apidoc",
