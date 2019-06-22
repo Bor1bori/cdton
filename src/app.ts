@@ -16,7 +16,7 @@ const logger = createLogger({
   transports: [new transports.Console()]
 });
 const app = express();
-
+app.use(cors());
 // body-parser
 app.use(
   bodyParser.urlencoded({
