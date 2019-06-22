@@ -77,10 +77,12 @@ router.post('/', (req: any, res: any, next: any) => {
     if (err || !user || user.id !== req.params.id){
       res.status(403).json({error: 'amtn errorim'});
     } else {
+      console.log('got : ' + user.id);
       UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
         if(userInDb === null) {
           res.status(403).json({error: 'amtn errorim'});
         } else {
+          console.log('22got : ' + userInDb.id);
           const instance: any = new RecordModel();
           instance.title = req.body.title;
           instance.link = req.body.link;
