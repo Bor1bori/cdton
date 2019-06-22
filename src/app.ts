@@ -49,7 +49,7 @@ mongo(); // mongo DB ON
 
 // app.use(express.static('public'));
 
-// app.use(cors());
+app.use(cors());
 
 /*app.options('*', (req, res) => {
   res.append('Access-Control-Allow-Origin', '*');
@@ -59,14 +59,14 @@ mongo(); // mongo DB ON
   console.log(1);
   res.status(200).json({dohun: 'hi'});
 });*/
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.header('Acess-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
   (req.method === 'OPTIONS') ?
     res.send(200) :
     next();
-});
+});*/
 
 app.use('/', mainRouter);
 
