@@ -72,7 +72,7 @@ const router = express.Router();
  *     }
  */
 
-router.post('/', (req: any, res: any, next: any) => {
+router.post('/:id/records', (req: any, res: any, next: any) => {
   console.log(111111);
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
     console.log(user.id);

@@ -55,6 +55,6 @@ router.get('/:id', (req: any, res: any, next: any) => {
 });
 
 router.use('/:id/category', categoryRouter);
-router.use('/:id/records', recordsRouter);
+router.use('/', recordsRouter);
 
 export default router;
