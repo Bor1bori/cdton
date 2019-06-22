@@ -63,7 +63,7 @@ describe('Request Test', ()=>{
         done();
       })
   });
-  it('/Users/:id',(done) => {
+  it('/Users/userinfo',(done) => {
     chai.request(url)
       .get(`/Users/${id}`)
       .set('Authorization', token)

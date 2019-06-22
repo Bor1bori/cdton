@@ -34,9 +34,9 @@ const router = express.Router();
  *     }
  */
 
-router.get('/:id', (req: any, res: any, next: any) => {
+router.get('/userinfo', (req: any, res: any, next: any) => {
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
-    if (err || !user || (user.id !== req.params.id)) {
+    if (err || !user ) {
       res.status(403).json({success: false});
     } else {
       UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {

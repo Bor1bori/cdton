@@ -43,6 +43,26 @@ const router = express.Router();
  *       "error": "amtn errorim"
  *     }
  */
+router.get('/:id/records', (req: any, res: any, next: any) => {
+  passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
+    if (err || !user || (user.id !== req.params.id)) {
+      res.status(403).json({success: false});
+    } else {
+      UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
+        if (userInDb === null) {
+          res.status(403).json({success: false});
+        } else {
+          res.status(200).json({
+            id: userInDb.id,
+            mem_power: userInDb.mem_power,
+            category: userInDb.category
+          });
+        }
+      });
+    }
+  })(req, res, next);
+});
+
 
 /**
  * @api {post} /Users/:id/records post record
@@ -66,27 +86,21 @@ const router = express.Router();
  * @apiError cannot create record
  *
  * @apiErrorExample Error-Response:
- *     HTTP/1.1 403 Accept
+ *     HTTP/1.1 403 forbidden
  *     {
  *       "error": "amtn errorim"
  *     }
  */
 
 router.post('/:id/records', (req: any, res: any, next: any) => {
-  console.log(111111);
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
-    console.log(user.id);
-    console.log(req.params.id);
     if (err || !user || (user.id !== req.params.id)) {
-      console.log('TTTT');
       res.status(403).json({error: 'amtn errorim'});
     } else {
-      console.log('got : ' + user.id); 
       UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
         if(userInDb === null) {
           res.status(403).json({error: 'amtn errorim'});
         } else {
-          console.log('22got : ' + userInDb.id);
           const instance: any = new RecordModel();
           instance.title = req.body.title;
           instance.link = req.body.link;
@@ -101,7 +115,6 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
             } else {
               instance.index = 1;
             }
-            console.log(instance.index);
             instance.save()
             res.status(200).json({success: true});
           });
