@@ -2,12 +2,10 @@ import mongoose from 'mongoose';
 
 // schema
 const recordSchema = new mongoose.Schema({
-  id : {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true
-  },
+  index: {
+    type: Number,
+    required: true
+  }
   title: {
     type: String,
     required: true
@@ -33,6 +31,9 @@ const recordSchema = new mongoose.Schema({
   },
   base_time: {
     type: Date
+  },
+  retention: {
+    type: Number
   }
 },
 {

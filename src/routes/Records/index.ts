@@ -6,23 +6,38 @@ router.get('/')
 
 /**
  * @api {get} /:id/records get Records
- * @apiName get category list
- * @apiGroup category
+ * @apiName get records list
+ * @apiGroup Records
  *
  * @apiHeader {String} Authorization jwtToken;
  *
- * @apiSuccess {array} Records category_list
+ * @apiSuccess {array} Records records_list
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "Records": {
- * ['category1', 'category2' ...],
- *     }
- * @apiError cannot create category
+ *       "Records": [{
+ *            _id: "AAAAAAAAAAAAAAAAA",
+ *            index: 12
+ *            title: "mytitle",
+ *            link: "http://somedomain.some",
+ *            conent: "mytitle means this is my title",
+ *            category: "default",
+ *            alarm_status: 1,
+ *            retrieve_num: 1,
+ *            base_time: Date,
+ *            retention: 70
+ *            },
+ *            {
+ *            _id: "BBBBBasdfBBBBB",
+ *            ..
+ *            ..
+ *            }, ...]
+ *
+ * @apiError 403 forbidden
  *
  * @apiErrorExample Error-Response:
- *     HTTP/1.1 202 Accept
+ *     HTTP/1.1 403 forbidden
  *     {
  *       "error": "amtn errorim"
  *     }
@@ -31,22 +46,23 @@ router.get('/')
 /**
  * @api {post} /:id/records post record
  * @apiName post record
- * @apiGroup category
+ * @apiGroup Records
  *
  * @apiHeader {String} Authorization jwtToken;
  *
  * @apiParam {String} title titlename
  * @apiParam {String} link link(not essential)
- * @apiParam {String} content contetn
- * 
- * @apiSuccess {array} Categorys category_list
+ * @apiParam {String} content content
+ * @apiParam {String} category
+ *
+ * @apiSuccess {Boolean} success true
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "category": ['category1', 'category2' ...],
+ *       "success": true
  *     }
- * @apiError cannot create category
+ * @apiError cannot create record
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 202 Accept
@@ -56,22 +72,26 @@ router.get('/')
  */
 
 /**
- * @api {get} / get category
- * @apiName get category list
- * @apiGroup category
+ * @api {put} /:id/records/:record_index put record
+ * @apiName modify a record
+ * @apiGroup Record
  *
  * @apiHeader {String} Authorization jwtToken;
  *
+ * @apiParam {String} index
+ * @apiParam {String} title titlename
+ * @apiParam {String} link link(not essential)
+ * @apiParam {String} content content
  * @apiParam {String} category
  *
- * @apiSuccess {array} Categorys category_list
+ * @apiSuccess {Boolean} success true
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "category": ['category1', 'category2' ...],
+ *       "success": true
  *     }
- * @apiError cannot create category
+ * @apiError cannot create record
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 202 Accept
