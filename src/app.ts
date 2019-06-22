@@ -49,13 +49,6 @@ mongo(); // mongo DB ON
 // app.use(express.static('public'));
 
 // app.use(cors());
-const corsOpt = function(req, callbank) {
-  callbank(null, {origin: true});
-};
-// 모든 도메인의 통신을 허용합니다.
- 
-app.options('*', cors(corsOpt));
-// 모든 options 메서드로의 사전 전달 접근을 허용합니다.
 
 app.use('/', mainRouter);
 
