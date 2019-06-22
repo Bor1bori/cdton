@@ -12,7 +12,9 @@ const router = express.Router();
  * @apiHeader {String} Authorization jwtToken;
  *
  * @apiSuccess {Boolean} success true
- * @apiSuccess {String} message "hello, {$id}"
+ * @apiSuccess {String} id user's id
+ * @apiSuccess {String} mem_power user's memory power(1,2,3)
+ * @apiSuccess {Array} category user's category
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK

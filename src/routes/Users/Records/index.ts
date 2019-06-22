@@ -1,8 +1,9 @@
 import express from 'express';
+import passport from 'passport';
+import RecordModel from '../../../models/mongodb/record';
+import UserModel from '../../../models/mongodb/user';
 
 const router = express.Router();
-
-router.get('/')
 
 /**
  * @api {get} /Users/:id/records get Records
@@ -65,11 +66,40 @@ router.get('/')
  * @apiError cannot create record
  *
  * @apiErrorExample Error-Response:
- *     HTTP/1.1 202 Accept
+ *     HTTP/1.1 403 Accept
  *     {
  *       "error": "amtn errorim"
  *     }
  */
+
+router.post('/', (req: any, res: any, next: any) => {
+  passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
+    if (err || !user || user.id !== req.params.id){
+      res.status(403).json({error: 'amtn errorim'});
+    } else {
+      UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
+        if(userInDb === null) {
+          res.status(403).json({error: 'amtn errorim'});
+        } else {
+          const instance = new RecordModel();
+          instance.title = req.body.title;
+          instance.link = req.body.link;
+          instance.content = req.body.content;
+          instance.category = req.body.category;
+          instance.base_time = Date();
+          instance.retention = 100;
+          RecordModel.findOne().sort('-index')
+          .exec((err: any, record: any) => {
+            instance.index = record.index+1;
+            console.log(instance.index);
+            instance.save()
+            res.status(200).json({success: true});
+          });
+        }
+      }
+      );
+}}
+);
 
 /**
  * @api {put} /Users/:id/records/:record_index put record
@@ -101,19 +131,19 @@ router.get('/')
 
 /**
  * @api {delete} /Users/:id/records/:record_index get category
- * @apiName get category list
- * @apiGroup category
+ * @apiName delete a record
+ * @apiGroup Records
  *
  * @apiHeader {String} Authorization jwtToken;
  *
- * @apiParam {String} category
+ * @apiParam {Number} index record_index
  *
- * @apiSuccess {array} Categorys category_list
+ * @apiSuccess {Boolean} Success true
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "category": ['category1', 'category2' ...],
+ *       "Success": true
  *     }
  * @apiError cannot create category
  *

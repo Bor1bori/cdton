@@ -5,7 +5,6 @@ const recordSchema = new mongoose.Schema({
   index: {
     type: Number,
     required: true,
-    unique: true
   },
   title: {
     type: String,
@@ -20,10 +19,6 @@ const recordSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: true
-  },
-  alarm_status: {
-    type: Boolean,
     required: true
   },
   retrieve_num: {
