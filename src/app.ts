@@ -19,7 +19,6 @@ const logger = createLogger({
 const app = express();
 app.use(cors());
 app.options('*', cors());  // enable pre-flight
-
 // body-parser
 app.use(
   bodyParser.urlencoded({
@@ -27,6 +26,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(cors());
 
 app.set('views', path.join(__dirname, '../apidocs'));
 app.locals.viewdir = app.get('views');
