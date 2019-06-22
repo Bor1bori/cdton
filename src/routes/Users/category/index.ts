@@ -80,6 +80,7 @@ router.put('/', (req: any, res: any, next: any) => {
           res.status(202).json({error: 'amtn errorim'});
         } else {
           userInDb.category = req.body.category;
+          userInDb.save();
           res.status(200).json({success: true});
         }
       });
