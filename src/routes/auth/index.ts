@@ -9,7 +9,7 @@ const router = express.Router();
 const saltRounds = 10;
 
 /**
- * @api {post} /register register
+ * @api {post} /auth/register register
  * @apiName register
  * @apiGroup Auth
  *
@@ -63,7 +63,7 @@ router.post('/register', (req: any, res: any) => {
 });
 
 /**
- * @api {post} /login login
+ * @api {post} /auth/login login
  * @apiName login
  * @apiGroup Auth
  *
