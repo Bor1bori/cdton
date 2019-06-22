@@ -18,13 +18,6 @@ const logger = createLogger({
 
 const app = express();
 
-app.options('/', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', "*");
-  res.end();
-});
-
 // body-parser
 app.use(
   bodyParser.urlencoded({
@@ -51,6 +44,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+
 logger.info('db connect start');
 mongo(); // mongo DB ON
 
