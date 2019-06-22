@@ -37,7 +37,6 @@ describe('Request Test', ()=>{
         expect(res.body.success).is.true;
         expect(res.body.jwtToken).is.not.null;
         token = res.body.jwtToken;
-        console.log(token);
         done();
       });
   });
@@ -49,7 +48,6 @@ describe('Request Test', ()=>{
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true;
-        console.log(res.body.message);
         done();
       });
   });

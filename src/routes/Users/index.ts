@@ -34,7 +34,7 @@ router.get('/:id', (req: any, res: any, next: any) => {
     if (err || !user || (user.id !== req.params.id)) {
       res.status(403).json({success: false});
     } else {
-      res.status(200).json({success: true, massage: `Hello!, ${user.id}`});
+      res.status(200).json({success: true, message: `Hello!, ${user.id}`});
     }
   })(req, res, next);
 });
