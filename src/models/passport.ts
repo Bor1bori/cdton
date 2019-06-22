@@ -6,6 +6,7 @@ import jwt_conf from '../private/jwt/jwt_config';
 import UserModel from './mongodb/user';
 
 const JWTStrategy   = passportJWT.Strategy;
+const ExtractJwt = passportJWT.ExtractJwt;
 
 const tokenExtractor = (req: any) => {
   let token = null;
@@ -51,7 +52,7 @@ passport.use(
   )
 );
 const opts = {
-  jwtFromRequest: tokenExtractor,
+  jwtFromRequest: ExtractJwt.fromAuthHeader(),
   secretOrKey: jwt_conf.jwtSecret
 };
 
