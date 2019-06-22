@@ -200,11 +200,11 @@ router.delete('/:id/records/:index', (req: any, res: any, next: any) => {
         if(userInDb === null) {
           res.status(403).json({error: 'amtn errorim'});
         } else {
-          let ind = Number(req.params.index);
+          const ind = Number(req.params.index);
           if (!(ind in userInDb.records)){
             res.status(404).end();
           } else {
-            userInDb.splice(userInDb.indexOf(ind), 1);
+            userInDb.records.splice(userInDb.records.indexOf(ind), 1);
             RecordModel.deleteOne({index: ind});
             userInDb.save();
             res.status(200).json({success: true});
