@@ -71,6 +71,7 @@ describe('Request Test', ()=>{
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.id).is.equal(id)
+        console.log(res.body);
         done();
       });
   });

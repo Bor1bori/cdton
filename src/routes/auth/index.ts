@@ -43,23 +43,21 @@ router.post('/register', (req: any, res: any) => {
   bcrypt.genSalt(saltRounds, (err: any, salt: any) => {
     bcrypt.hash(plainPW, salt).then((hash: string) => {
       hashPassword = hash;
-      createAccount();
+      UserModel.findOne({ id: receiveID}, (err: any, user: any) => {
+        if (user === null) {
+          UserModel.create({id: receiveID, pw: hashPassword, mem_power: req.body.mem_power});
+          res.status(200).json({success: true});
+        } else {
+          res.status(202).json({error: 'DuplicatedID'});
+        }
+      });
     });
   });
 
   // have to check id, pw, mem_power
 
   // email dup check and create
-  function createAccount() {
-    UserModel.findOne({ id: receiveID}, (err: any, user: any) => {
-      if (user === null) {
-        UserModel.create({id: receiveID, pw: hashPassword, mem_power: req.body.mem_power});
-        res.status(200).json({success: true});
-      } else {
-        res.status(202).json({error: 'DuplicatedID'});
-      }
-    });
-  }
+
 });
 
 /**
