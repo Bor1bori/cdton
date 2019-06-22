@@ -17,6 +17,12 @@ const logger = createLogger({
 });
 const app = express();
 
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 // body-parser
 app.use(
   bodyParser.urlencoded({
@@ -24,9 +30,6 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
-app.use(cors());
-// app.options('*', cors()) // include before other routes
 
 app.set('views', path.join(__dirname, '../apidocs'));
 app.locals.viewdir = app.get('views');
