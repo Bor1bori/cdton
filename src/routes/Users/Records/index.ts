@@ -96,7 +96,11 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
           instance.retention = 100;
           RecordModel.findOne().sort('-index')
           .exec((err: any, record: any) => {
-            instance.index = record.index+1;
+            if (!record) {
+              instance.index = record.index + 1;
+            } else {
+              instance.index = 1;
+            }
             console.log(instance.index);
             instance.save()
             res.status(200).json({success: true});
