@@ -16,8 +16,9 @@ const router = express.Router();
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "success": "true",
- *       "message": "Hello, aabbcc"
+ *       id: hongildong,
+ *       mem_power: 3,
+ *       category: ['default', 'math', 'english']
  *     }
  *
  * @apiError {Bollean} success false
@@ -25,9 +26,7 @@ const router = express.Router();
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 403 Forbidden
  *     {
- *       id: hongildong,
- *       mem_power: 3,
- *       category: ['default', 'math', 'english']
+ *       success: false
  *     }
  */
 
