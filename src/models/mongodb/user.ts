@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 // schema
+
 const userSchema = new mongoose.Schema({
   id : {
     type: String,
@@ -14,8 +15,13 @@ const userSchema = new mongoose.Schema({
     trim: true
   },
   mem_power: { // users memory power!!
-    type: Number, // 1/2, 1, 4 -> d in e^(-t/n*d)
+    type: Number, // 1->1/2, 1->2, 3->4 -> d in e^(-t/n*d)
     required: true,
+  },
+  category : {
+    type: Array,
+    required: true,
+    default: ['default']
   }
 },
 {

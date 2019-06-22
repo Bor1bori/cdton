@@ -1,6 +1,6 @@
 import express from 'express';
+import UserModel from '../../models/mongodb/user';
 import passport from '../../models/passport';
-
 const router = express.Router();
 
 /**
@@ -25,7 +25,9 @@ const router = express.Router();
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 403 Forbidden
  *     {
- *       "success": "false"
+ *       id: hongildong,
+ *       mem_power: 3,
+ *       category: ['default', 'math', 'english']
  *     }
  */
 
@@ -34,7 +36,17 @@ router.get('/:id', (req: any, res: any, next: any) => {
     if (err || !user || (user.id !== req.params.id)) {
       res.status(403).json({success: false});
     } else {
-      res.status(200).json({success: true, message: `Hello!, ${user.id}`});
+      UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
+        if (userInDb === null) {
+          res.status(403).json({success: false});
+        } else {
+          res.status(200).json({
+            id: userInDb.id,
+            mem_power: userInDb.mem_power,
+            category: userInDb.category
+          });
+        }
+      });
     }
   })(req, res, next);
 });
