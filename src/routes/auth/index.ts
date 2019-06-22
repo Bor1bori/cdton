@@ -15,7 +15,7 @@ const saltRounds = 10;
  *
  * @apiParam {String} id Users unique ID.
  * @apiParam {String} pw Users PassWord,
- * @apiParam {Number} relative_mem Users Memory Power(1,2,3).
+ * @apiParam {Number} mem_power Users Memory Power(1,2,3).
  *
  * @apiSuccess {Boolean} success true
  *
@@ -47,7 +47,7 @@ router.post('/register', (req: any, res: any) => {
     });
   });
 
-  // have to check email, password, nickname
+  // have to check id, pw, mem_power
 
   // email dup check and create
   function createAccount() {

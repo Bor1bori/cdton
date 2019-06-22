@@ -57,6 +57,7 @@
     "@babel/node": "^7.2.2",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
+    "@types/cors": "^2.8.5",
     "@types/http-errors": "^1.6.1",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
