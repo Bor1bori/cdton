@@ -81,7 +81,7 @@ router.post('/', (req: any, res: any, next: any) => {
         if(userInDb === null) {
           res.status(403).json({error: 'amtn errorim'});
         } else {
-          const instance = new RecordModel();
+          const instance: any = new RecordModel();
           instance.title = req.body.title;
           instance.link = req.body.link;
           instance.content = req.body.content;
