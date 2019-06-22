@@ -75,6 +75,8 @@ const router = express.Router();
 router.post('/', (req: any, res: any, next: any) => {
   console.log(111111);
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
+    console.log(user.id);
+    console.log(req.params.id);
     if (err || !user || (user.id !== req.params.id)) {
       console.log('TTTT');
       res.status(403).json({error: 'amtn errorim'});
