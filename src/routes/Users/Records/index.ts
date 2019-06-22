@@ -115,7 +115,9 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
             } else {
               instance.index = 1;
             }
-            instance.save()
+            userInDb.records.push(instance.index);
+            instance.save();
+            userInDb.save();
             res.status(200).json({success: true});
           });
         }

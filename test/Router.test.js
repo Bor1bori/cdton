@@ -65,7 +65,7 @@ describe('Request Test', ()=>{
   });
   it('/Users/userinfo',(done) => {
     chai.request(url)
-      .get(`/Users/${id}`)
+      .get(`/Users/userinfo`)
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
       .end((err, res) => {
