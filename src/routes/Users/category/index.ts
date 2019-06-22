@@ -72,14 +72,14 @@ router.get('/', (req: any, res: any, next: any) => {
 
 router.put('/', (req: any, res: any, next: any) => {
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
-    if (err || !user){
+    if (err || !user) {
       res.status(202).json({error: 'amtn errorim'});
     } else {
       UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
         if (userInDb === null) {
           res.status(202).json({error: 'amtn errorim'});
         } else {
-          userInDb.category = res.body.category;
+          userInDb.category = req.body.category;
           res.status(200).json({success: true});
         }
       });
