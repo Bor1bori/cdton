@@ -16,8 +16,6 @@ const logger = createLogger({
   transports: [new transports.Console()]
 });
 const app = express();
-// app.use(cors());
-app.options('*', cors()) // include before other routes
 
 // body-parser
 app.use(
@@ -26,6 +24,9 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+app.use(cors());
+app.options('*', cors()) // include before other routes
 
 app.set('views', path.join(__dirname, '../apidocs'));
 app.locals.viewdir = app.get('views');
