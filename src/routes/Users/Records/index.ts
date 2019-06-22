@@ -75,11 +75,11 @@ const router = express.Router();
 router.post('/', (req: any, res: any, next: any) => {
   console.log(111111);
   passport.authenticate('jwt', { session: false }, (err: any, user: any) => {
-    if (err || !user || (user.id !== req.params.id)){
+    if (err || !user || (user.id !== req.params.id)) {
       console.log('TTTT');
       res.status(403).json({error: 'amtn errorim'});
     } else {
-      console.log('got : ' + user.id);
+      console.log('got : ' + user.id); 
       UserModel.findOne({id: user.id}, (err2: any, userInDb: any) => {
         if(userInDb === null) {
           res.status(403).json({error: 'amtn errorim'});
@@ -100,10 +100,9 @@ router.post('/', (req: any, res: any, next: any) => {
             res.status(200).json({success: true});
           });
         }
-      }
-      );
-}}
-)});
+      });
+}})(req, res, next);
+});
 
 /**
  * @api {put} /Users/:id/records/:record_index put record
