@@ -52,7 +52,7 @@ passport.use(
   )
 );
 const opts = {
-  jwtFromRequest: ExtractJwt.fromAuthHeader(),
+  jwtFromRequest: ExtractJwt.fromAuthHeader,
   secretOrKey: jwt_conf.jwtSecret
 };
 
