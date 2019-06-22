@@ -83,7 +83,6 @@ router.put('/', (req: any, res: any, next: any) => {
           res.status(200).json({success: true});
         }
       });
-      res.status(200).json({success: true});
     }
   })(req, res, next);
 });
