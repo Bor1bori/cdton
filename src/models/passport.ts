@@ -9,6 +9,7 @@ const JWTStrategy   = passportJWT.Strategy;
 const ExtractJwt = passportJWT.ExtractJwt;
 
 const tokenExtractor = (req: any) => {
+  console.log('pas1');
   let token = null;
   if (req && req.headers){
 // tslint:disable-next-line: no-string-literal
@@ -57,6 +58,7 @@ const opts = {
 
 passport.use(new JWTStrategy(opts, (jwtPayload: any, done: any) => {
   UserModel.findOne({id: jwtPayload.userinfo.id}, (err, user) => {
+    console.log('pas2');
     if (err) {
       return done(err);
     }
