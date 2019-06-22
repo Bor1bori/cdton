@@ -51,23 +51,6 @@ mongo(); // mongo DB ON
 
 app.use(cors());
 
-/*app.options('*', (req, res) => {
-  res.append('Access-Control-Allow-Origin', '*');
-  res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.append('Access-Control-Max-Age', '3600');
-  res.append('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers');
-  console.log(1);
-  res.status(200).json({dohun: 'hi'});
-});*/
-/*app.use((req, res, next) => {
-  res.header('Acess-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  (req.method === 'OPTIONS') ?
-    res.send(200) :
-    next();
-});*/
-
 app.use('/', mainRouter);
 
 app.listen(30704, () => {
