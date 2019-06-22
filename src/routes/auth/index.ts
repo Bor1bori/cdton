@@ -53,7 +53,7 @@ router.post('/register', (req: any, res: any) => {
   function createAccount() {
     UserModel.findOne({ id: receiveID}, (err: any, user: any) => {
       if (user === null) {
-        UserModel.create({id: receiveID, pw: hashPassword});
+        UserModel.create({id: receiveID, pw: hashPassword, mem_power: req.body.mem_power});
         res.status(200).json({success: true});
       } else {
         res.status(202).json({error: 'DuplicatedID'});

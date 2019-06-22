@@ -12,7 +12,7 @@ const url = 'http://localhost:80';
 
 const id = 'test@aaaa';
 const pw = 'test';
-const nick = id;
+const mem_power = 1;
 // let token;
 
 describe('Request Test', ()=>{
@@ -20,7 +20,7 @@ describe('Request Test', ()=>{
     chai.request(url)
       .post('/auth/register')
       .set('Content-Type', 'application/json')
-      .send({email: id, password: pw, nickname: nick})
+      .send({id: id, pw: pw, mem_power: mem_power})
       .end((err, res)=>{
         expect(err).to.be.null;
         expect(res).to.have.status(200);
@@ -31,7 +31,7 @@ describe('Request Test', ()=>{
     chai.request(url)
       .post('/auth/login')
       .set('Content-Type', 'application/json')
-      .send({email: id, password: pw})
+      .send({id: id, pw: pw})
       .end((err, res) =>{
         expect(err).to.be.null;
         expect(res.body.success).is.true;
