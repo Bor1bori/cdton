@@ -8,7 +8,7 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-const url = 'http://localhost:30704';
+const url = 'http://49.247.131.57:30704';
 
 const id = 'testaaa123';
 const pw = 'test';
