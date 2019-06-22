@@ -16,7 +16,7 @@ const logger = createLogger({
   transports: [new transports.Console()]
 });
 const app = express();
-app.use(cors());
+// app.use(cors());
 app.options('*', cors()) // include before other routes
 
 // body-parser
