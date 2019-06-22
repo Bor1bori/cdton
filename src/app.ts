@@ -49,7 +49,7 @@ mongo(); // mongo DB ON
 
 // app.use(express.static('public'));
 
-// app.use(cors());
+app.use(cors());
 
 app.options('*', (req, res) => {
   res.append('Access-Control-Allow-Origin', '*');

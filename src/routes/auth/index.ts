@@ -47,9 +47,9 @@ router.post('/register', (req: any, res: any) => {
         if (user === null) {
           UserModel.create({id: receiveID, pw: hashPassword, mem_power: req.body.mem_power});
           console.log(2);
-          return res.status(200).json({success: true});
+          res.status(200).json({success: true});
         } else {
-          return res.status(202).json({error: 'DuplicatedID'});
+          res.status(202).json({error: 'DuplicatedID'});
         }
       });
     });
