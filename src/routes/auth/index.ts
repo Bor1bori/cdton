@@ -95,14 +95,10 @@ router.post('/login', (req: any, res: any, next: any) => {
     if (err || !user) {
       return res.status(202).json({ err: 'LoginFailed' });
     }
-    req.login(user, {session: false}, (loginErr: any) => {
-      if (loginErr) {
-        return res.status(202).json({ err: 'LoginFailed' });
-      }
-      const token = jwt.sign({userinfo: user}, jwt_conf.jwtSecret);
-      // res.cookie('Authorization', token, { expires: new Date(Date.now() + 86400000), httpOnly: true });
-      return res.status(200).json({success: true, jwtToken: token});
-    });
+    const token = jwt.sign({userinfo: user}, jwt_conf.jwtSecret);
+    // res.cookie('Authorization', token, { expires: new Date(Date.now() + 86400000), httpOnly: true });
+    return res.status(200).json({success: true, jwtToken: token});
+    );
   })(req, res, next);
 });
 
