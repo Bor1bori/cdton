@@ -20,26 +20,25 @@ const cookieExtractor = (req: any) => {
 passport.use(
   new passport_local.Strategy(
     {
-      usernameField: 'email',
-      passwordField: 'password',
+      usernameField: 'id',
+      passwordField: 'pw',
       session: true,
       passReqToCallback: false
     },
     async (username: string, password: string, done: any) => {
 
       let foundUser: any;
-      await UserModel.findOne({email: username}, (err, user) => {
+      await UserModel.findOne({id: username}, (err, user) => {
         foundUser = user;
       });
       if (foundUser === null ){
         return done(null, false, {message: 'login failed'});
       } else {
-        await bcrypt.compare(password, foundUser.password, (err: any, res: any) => {
+        await bcrypt.compare(password, foundUser.pw, (err: any, res: any) => {
           if (res === true){
             const userInfo = {
               _id: foundUser._id,
-              email: foundUser.email,
-              nickname: foundUser.nickname
+              id: foundUser.id
             };
             return done(null, userInfo)
           } else {
@@ -56,7 +55,7 @@ const opts = {
 };
 
 passport.use(new JWTStrategy(opts, (jwtPayload: any, done: any) => {
-  UserModel.findOne({email: jwtPayload.userinfo.email}, (err, user) => {
+  UserModel.findOne({ud: jwtPayload.userinfo.id}, (err, user) => {
     if (err) {
       return done(err);
     }

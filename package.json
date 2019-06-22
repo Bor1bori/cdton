@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "toy_project",
+  "name": "cdton",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -30,6 +30,7 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
+    "express": "^4.17.0",
     "express-session": "^1.15.6",
     "fs-extra": "^8.0.1",
     "global": "^4.3.2",
@@ -66,7 +67,6 @@
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "express": "^4.17.0",
     "tslint": "^5.17.0",
     "winston": "^3.2.1"
   }

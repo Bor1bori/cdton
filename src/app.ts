@@ -50,6 +50,6 @@ mongo(); // mongo DB ON
 
 app.use('/', mainRouter);
 
-app.listen(80, function() {
-  logger.info('Express server has started on port 3000');
+app.listen(30704, () => {
+  logger.info('Express server has started on port 30704');
 });

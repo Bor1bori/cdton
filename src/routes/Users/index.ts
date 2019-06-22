@@ -1,5 +1,5 @@
 import express from 'express';
-import passport from '../models/passport';
+import passport from '../../models/passport';
 
 const router = express.Router();
 
