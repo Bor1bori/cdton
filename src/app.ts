@@ -17,6 +17,8 @@ const logger = createLogger({
 });
 const app = express();
 app.use(cors());
+app.options('*', cors()) // include before other routes
+
 // body-parser
 app.use(
   bodyParser.urlencoded({
