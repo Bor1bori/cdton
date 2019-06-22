@@ -17,7 +17,7 @@ const router = express.Router();
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "Records": [{
+ *       "records": [{
  *            _id: "AAAAAAAAAAAAAAAAA",
  *            index: 12
  *            title: "mytitle",
@@ -52,14 +52,21 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
         if (userInDb === null) {
           res.status(403).json({success: false});
         } else {
-          res.status(200).json({
-            id: userInDb.id,
-            mem_power: userInDb.mem_power,
-            category: userInDb.category
-          });
+          const userRecords: any = [];
+          const now: any = new Date();
+          for (let i = 0; i > userInDb.records; i++) {
+            RecordModel.findOne({index: userInDb.records[i]}, (err3: any, recordDb: any) => {
+              const t = (now - recordDb.base_time) / (1000 * 60 * 60 * 24);
+              recordDb.retention = Math.exp( -t / (recordDb.retrieve_num * userInDb.mem_power));
+              recordDb.retrieve_num = recordDb.retrieve_num + 1;
+              userRecords.push(recordDb);
+              recordDb.save();
+            });
+          }
+          res.status(200).json({records: userRecords});
         }
       });
-    }
+    };
   })(req, res, next);
 });
 
@@ -106,7 +113,7 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
           instance.link = req.body.link;
           instance.content = req.body.content;
           instance.category = req.body.category;
-          instance.base_time = Date();
+          instance.base_time = new Date();
           instance.retention = 100;
           RecordModel.findOne().sort('-index')
           .exec((err: any, record: any) => {
@@ -177,5 +184,7 @@ router.post('/:id/records', (req: any, res: any, next: any) => {
  *       "error": "amtn errorim"
  *     }
  */
+
+
 
 export default router;

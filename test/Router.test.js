@@ -76,16 +76,30 @@ describe('Request Test', ()=>{
       });
   });
 
-  it('/Users/:id/records', (done) => {
+  it('/Users/:id/records(post)', (done) => {
     chai.request(url)
       .post(`/Users/${id}/records`)
       .set('Authorization', token)
       .set('Content-Type', 'application/json')
-      .send({title: 'aa', link: 'aaa.com', content: 'blahblah', category: 'aa'})
+      .send({title: 'bbb', link: 'aaa.com', content: 'blahblah', category: 'aa'})
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res.body.success).is.true;
+        console.log(res.body);
         done();
       });
   });
+  it('/Users/:id/records(get)', (done) => {
+    chai.request(url)
+      .get(`/Users/${id}/records`)
+      .set('Authorization', token)
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body.records).is.not.null;
+        console.log(res.body);
+        done();
+      });
+  });
+
 });
