@@ -1,6 +1,6 @@
 import express from 'express';
-import passport from '../../../models/passport';
 import UserModel from '../../../models/mongodb/user';
+import passport from '../../../models/passport';
 
 const router = express.Router();
 

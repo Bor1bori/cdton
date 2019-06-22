@@ -75,4 +75,17 @@ describe('Request Test', ()=>{
         done();
       });
   });
+
+  it('/Users/:id/records', (done) => {
+    chai.request(url)
+      .post(`/Users/${id}/records`)
+      .set('Authorization', token)
+      .set('Content-Type', 'application/json')
+      .send({title: 'aa', link: 'aaa.com', content: 'blahblah', category: 'aa'})
+      .end((err, res) => {
+        expect(err).to.be.null;
+        expect(res.body.success).is.true;
+        done();
+      });
+  });
 });
