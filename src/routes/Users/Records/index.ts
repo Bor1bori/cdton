@@ -61,6 +61,12 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
               if (recordDb.retention < 60) {
                 recordDb.retrieve_num = recordDb.retrieve_num + 1;
                 recordDb.base_time = new Date();
+                if(recordDb.retemtopm < 30) {
+                  recordDb.retrieve_num -= 2;
+                  if(recordDb.retrieve_num < 1) {
+                    recordDb.retrieve_num = 1;
+                  }
+                }
               }
               userRecords.push(recordDb);
               recordDb.save();
