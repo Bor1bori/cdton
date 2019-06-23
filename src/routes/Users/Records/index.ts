@@ -58,7 +58,7 @@ router.get('/:id/records', (req: any, res: any, next: any) => {
             RecordModel.findOne({index: userInDb.records[i]}, (err3: any, recordDb: any) => {
               const t = (now - recordDb.base_time) / (1000 * 60 * 60 * 24);
               recordDb.retention = Math.exp( -t / (recordDb.retrieve_num * userInDb.mem_power));
-              if (recordDb.retention < 60) {
+              if ((recordDb.retention * 100) < 60) {
                 recordDb.retrieve_num = recordDb.retrieve_num + 1;
                 recordDb.base_time = new Date();
                 if(recordDb.retemtopm < 30) {
